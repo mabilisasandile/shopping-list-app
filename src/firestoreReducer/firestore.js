@@ -9,12 +9,12 @@ export const firestoreReducer = createSlice({
     initialState: [{
         itemName: "",
         itemDescription: "",
-        amount: "",
-        imageUrl: ""
+        amount: 0,
+        quantity: 0
     }],
 
     reducers: {
-        addTransaction: async (state, action) => {
+        addItem: async (state, action) => {
             try {
                 const docRef = await addDoc(collection(db, "items"), action.payload);
                 Swal.fire({
@@ -31,7 +31,7 @@ export const firestoreReducer = createSlice({
     }
 })
 
-export const { addTransaction } = firestoreReducer.actions;
+export const { addItem } = firestoreReducer.actions;
 export default firestoreReducer.reducer
 
 

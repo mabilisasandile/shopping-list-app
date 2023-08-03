@@ -40,9 +40,10 @@ export const fetchData = ()=> async(dispatch) =>{
 		id: doc.id,
 		...doc.data()
 	  }))
+	  dispatch(fetchDataSuccess(data)) //Dispatching fetched data to store
 	}catch (error) {
 		dispatch(fetchDataFailure(error));
-        
+        console.log(error);
 	}
 }
 
