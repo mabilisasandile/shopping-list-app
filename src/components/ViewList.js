@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
@@ -73,3 +74,5 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ViewList);
+=======
+>>>>>>> 70e3f3cad4a792de095288adb13cea4d850d90da
