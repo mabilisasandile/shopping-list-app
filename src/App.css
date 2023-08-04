@@ -29,3 +29,9 @@ body {
   width: 150px;
   height: 150px;
 }
+
+.table-view {
+  border-radius: 25px;
+  border: 1px solid black;
+  border-collapse: collapse;
+}

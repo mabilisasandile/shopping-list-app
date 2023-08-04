@@ -22,53 +22,58 @@ export const firestoreReducer = createSlice({
                     title: 'Added!',
                     text: 'Added successfully.',
                     showConfirmButton: false,
-                    timer: 3000,
+                    timer: 3000
                 });
             } catch (err) {
                 console.log(err);
+            }
+        },
+
+        updateItemInFirestore : async (state, action) => {
+            try {
+                // if (!itemName || !itemDescription || !amount || !quantity) {
+                //     return Swal.fire({
+                //         icon: 'error',
+                //         title: 'Error!',
+                //         text: 'All fields are required.',
+                //         showConfirmButton: true,
+                //         timer: 3000,
+                //     });
+                // }
+        
+                // const room = {
+                //     id,
+                //     itemName,
+                //     itemDescription,
+                //     amount,
+                //     quantity,
+                // };
+        
+                // // await setDoc(doc(db, "rooms", id), {
+                // //     ...item
+                // // });
+        
+                // //Success message popup
+                // Swal.fire({
+                //     icon: 'success',
+                //     title: 'Updated!',
+                //     text: 'Item has been updated.',
+                //     showConfirmButton: false,
+                //     timer: 3000,
+                // });
+            } catch (error){
+                console.log("Failed to update: ", error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Failed to update.',
+                    showConfirmButton: true,
+                    timer: 3000,
+                });
             }
         }
     }
 })
 
-export const { addItem } = firestoreReducer.actions;
+export const { addItem, updateItemInFirestore } = firestoreReducer.actions;
 export default firestoreReducer.reducer
-
-
-    // //Upload image to the Firebase storage
-
-    // const [imageUpload, setImageUpload] = useState(null);
-    // const [imageURL, setImageURL] = useState('');
-
-    //     const handleUpload = () => {
-
-    //         try {
-    //             const imageRef = ref(storage, `hotel_images/${imageUpload.name + v4()}`);
-
-    //             const uploadImage = uploadBytes(imageRef, imageUpload).then(() => {
-    //                 getDownloadURL(imageRef).then((url) => {    //Get the image url
-    //                     setImageURL(url);
-    //                     Swal.fire({
-    //                         icon: 'success',
-    //                         title: 'Uploaded!',
-    //                         text: 'Image has been uploaded.',
-    //                         showConfirmButton: false,
-    //                         timer: 3000,
-    //                     });
-    //                 })
-    //             })
-    //         } catch (error) {
-    //             Swal.fire({
-    //                 icon: 'error',
-    //                 title: 'Error!',
-    //                 text: 'Error uploading image!',
-    //                 showConfirmButton: false,
-    //                 timer: 3000,
-    //             });
-    //         }
-
-                // < label > Insert Image: </label >
-                // <input
-                //     type="file"
-                //     onChange={(event) => setImageUpload(event.target.files[0])} />
-                // <button onClick={handleUpload}>Upload</button>
