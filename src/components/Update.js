@@ -7,21 +7,27 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useLocation } from "react-router-dom";
 
-const Update = (item) => {
-    const location = useLocation();
-    const itemData = location.state.item;
-    const id = itemData.id;
-    const [itemName, setItemName] = useState(itemData.itemName);
-    const [itemDescription, setItemDescription] = useState(itemData.itemDescription);
-    const [amount, setAmount] = useState(itemData.amount);
-    const [quantity, setQuantity] = useState(itemData.quantity);
+const Update = ({selectedItem}) => {
+    // const location = useLocation();
+    // const itemData = location.item;
+    // const itemId = itemData.id;
+    console.log("Selected item: ", selectedItem);
+    const [itemName, setItemName] = useState(selectedItem.itemName);
+    const [itemDescription, setItemDescription] = useState(selectedItem.itemDescription);
+    const [amount, setAmount] = useState(selectedItem.amount);
+    const [quantity, setQuantity] = useState(selectedItem.quantity);
+
+    // const [itemName, setItemName] = useState('');
+    // const [itemDescription, setItemDescription] = useState('');
+    // const [amount, setAmount] = useState('');
+    // const [quantity, setQuantity] = useState('');
 
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const updatedItem = {
-            id: itemData.id,
+            // id: id,
             itemName,
             itemDescription,
             amount,

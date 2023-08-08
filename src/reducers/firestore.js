@@ -1,6 +1,6 @@
 
 import { createSlice } from '@reduxjs/toolkit'
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import Swal from 'sweetalert2';
 
@@ -26,6 +26,24 @@ export const firestoreReducer = createSlice({
                 });
             } catch (err) {
                 console.log(err);
+            }
+        },
+
+        deleteItem: async (state, action) => {
+            try {
+                const itemDoc = doc(db, "items", action.payload.id);
+                await deleteDoc(itemDoc);
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Deleted!',
+                    text: 'Item has been deleted.',
+                    showConfirmButton: false,
+                    timer: 3000,
+                });
+            } catch(err){
+                console.log(err)
+                alert(err);
             }
         },
 
@@ -75,5 +93,5 @@ export const firestoreReducer = createSlice({
     }
 })
 
-export const { addItem, updateItemInFirestore } = firestoreReducer.actions;
+export const { addItem, updateItemInFirestore, deleteItem } = firestoreReducer.actions;
 export default firestoreReducer.reducer

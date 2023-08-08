@@ -1,17 +1,19 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import authSlice from '../authReducer/auth';
-import firestoreSlice from '../firestoreReducer/firestore';
-import dataSlice from '../firestoreReducer/data';
+// import { firestoreSlice } from "@reduxjs/toolkit";
+import dataSlice from '../reducers/data';
 import cartSlice from "./cartSlice";
+import firestoreReducer from "../reducers/firestore";
 
 
 export const store = configureStore({
     reducer:{
         authentication:authSlice,
-        db: firestoreSlice,
+        // db: firestoreSlice,
         data: dataSlice,
-        cart: cartSlice
+        cart: cartSlice,
+        deleteItem: firestoreReducer 
     }
 
 })

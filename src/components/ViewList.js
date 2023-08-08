@@ -1,16 +1,18 @@
-<<<<<<< HEAD
 import React from "react";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchData } from "../firestoreReducer/data";
+import { fetchData } from "../reducers/data";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { deleteItem } from "../actions/actions";
+// import { deleteItem } from "../actions/actions";
+import { deleteItem } from "../reducers/firestore";
+import Update from "./Update";
 
 const ViewList = ({ fetchData }) => {
 
     const [items, setItems] = useState([]);
+    const [selectedItem, setSelectedItem] = useState(null);
     const dispatch = useDispatch();
     const { loading, error, data } = useSelector((state) => state.data);
     const navigate = useNavigate();
@@ -19,20 +21,26 @@ const ViewList = ({ fetchData }) => {
         dispatch(fetchData);
         console.log("View items:", data);
         setItems(data);
-    }, []);
+    }, [items]);
 
     const handleEdit = (id) => {
         console.log("View ID:", id);
-        const [item] = items.filter(item => item.id === id);
+        const [item] = data.filter(item => item.id === id);
     
         console.log("Fetched item: ", item);
-        navigate('/update', {state: {item: item}} );
+        setSelectedItem(item);
+        navigate('/update');
     }
 
-    const handleDelete = (itemId) => {
-        dispatch(deleteItem(itemId));
-        // deleteItem(itemId);
-    }
+    console.log("View list selected item: ", selectedItem);
+
+    const handleDelete = (id) => {
+        dispatch(
+          deleteItem({
+            id: id
+          })
+        );
+      }
 
     return (
         <div className="container">
@@ -61,6 +69,7 @@ const ViewList = ({ fetchData }) => {
                     ))}
                 </tbody>
             </table>
+            {<Update selectedItem={selectedItem}/>}
         </div>
     );
 }
@@ -74,5 +83,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ViewList);
-=======
->>>>>>> 70e3f3cad4a792de095288adb13cea4d850d90da

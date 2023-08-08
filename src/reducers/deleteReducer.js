@@ -10,6 +10,7 @@ import {
     deleteError: null,
   };
   
+  
   export const deleteReducer = (state = initialState, action) => {
     switch (action.type) {
       case DELETE_ITEM_REQUEST:
@@ -35,4 +36,6 @@ import {
     }
   };
   
+ 
+
   export default deleteReducer;

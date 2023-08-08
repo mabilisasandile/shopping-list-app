@@ -7,7 +7,7 @@ import image2 from '../images/grocery.jpg';
 import image3 from '../images/appliance.jpg';
 import image4 from '../images/drinks.jpg';
 import image5 from '../images/phone.jpg'
-import { addItem } from "../firestoreReducer/firestore";
+import { addItem } from "../reducers/firestore";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

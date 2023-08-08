@@ -5,7 +5,7 @@ import {
 DELETE_ITEM_SUCCESS, 
 DELETE_ITEM_REQUEST, 
 DELETE_ITEM_FAILURE } from './actionTypes';
-import { updateItemInFirestore } from '../firestoreReducer/firestore';
+import { updateItemInFirestore } from '../reducers/firestore';
 
 export const updateItemSuccess = (item) => {
   return {
