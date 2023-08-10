@@ -16,6 +16,7 @@ const ViewList = ({ fetchData }) => {
     const dispatch = useDispatch();
     const { loading, error, data } = useSelector((state) => state.data);
     const navigate = useNavigate();
+    let item = [];
 
     useEffect(() => {
         dispatch(fetchData);
@@ -23,16 +24,14 @@ const ViewList = ({ fetchData }) => {
         setItems(data);
     }, [items]);
 
-    const handleEdit = (id) => {
+    const handleEdit = async (id) => {
         console.log("View ID:", id);
-        const [item] = data.filter(item => item.id === id);
+        item = data.filter(item => item.id === id);
     
         console.log("Fetched item: ", item);
         setSelectedItem(item);
-        navigate('/update');
+        navigate('/update', {state: {item: item}} );
     }
-
-    console.log("View list selected item: ", selectedItem);
 
     const handleDelete = (id) => {
         dispatch(
